@@ -60,7 +60,7 @@ Os botões e o link da nota usam esses valores automaticamente.
 | --- | --- |
 | Endereço | parágrafo `#addressText` e os dois links do Maps |
 | Telefone / WhatsApp | links `tel:` e `wa.me` no HTML |
-| Nota, número de avaliações e estrelas | bloco `.rating` e rodapé |
+| Nota e número de avaliações | `data/reviews.json` (fallback no HTML) |
 | Depoimento | bloco `.quote` |
 | Horários | constantes `HOURS` e `GROUPS` no `<script>` |
 | Serviços e preços | lista `.service-list` no HTML |
@@ -82,6 +82,22 @@ const HOURS = [
   // ...
 ];
 ```
+
+### Nota e quantidade de avaliações
+
+A nota e a contagem ficam em `data/reviews.json`:
+
+```json
+{ "rating": 5.0, "count": 11, "updatedAt": "2026-11-10" }
+```
+
+A página lê esse arquivo ao carregar e atualiza a nota do topo, a contagem, o
+ticket de avaliação e o rodapé. Se o arquivo não carregar, os valores do HTML
+continuam valendo.
+
+Para atualizar, edite o JSON e faça commit/push. O `rating` usa ponto decimal
+(5.0); a página mostra com vírgula. A atualização automática via Places API
+ainda não está ligada; quando for, ela vai escrever nesse mesmo arquivo.
 
 ### Foto e logo
 
@@ -113,6 +129,7 @@ WhatsApp usa essa imagem. Se mudar de domínio, atualize as URLs absolutas no
 
 ```
 index.html              página completa (HTML + CSS + JS)
+data/reviews.json       nota e quantidade de avaliações
 assets/logo.png         logo da Elite Barber (512 px)
 assets/shop.jpg         foto do topo
 assets/share-elite-barber.jpg  imagem de compartilhamento (WhatsApp/OG)

@@ -733,9 +733,9 @@
       <a class="rating" href="https://www.google.com/search?q=Elite+barber+Divin%C3%B3polis+MG" data-link="review" target="_blank" rel="noopener"
          aria-label="Nota 5,0 de 5, com 11 avaliações no Google">
         <span class="stars" aria-hidden="true">★★★★★</span>
-        <strong>5,0</strong>
+        <strong data-google-rating>5,0</strong>
         <span class="rating-sep" aria-hidden="true">·</span>
-        <span>11 avaliações no Google</span>
+        <span><span data-google-count>11</span> avaliações no Google</span>
         <span class="arrow" aria-hidden="true">↗</span>
       </a>
     </div>
@@ -756,7 +756,7 @@
 
     <a class="ticket ticket--review" href="https://www.google.com/search?q=Elite+barber+Divin%C3%B3polis+MG" data-link="review" target="_blank" rel="noopener">
       <span class="ticket-main">
-        <span class="ticket-kicker">02 · Google · 11 avaliações</span>
+        <span class="ticket-kicker">02 · Google · <span data-google-count>11</span> avaliações</span>
         <span class="ticket-title">Avaliar no Google</span>
         <span class="ticket-sub">Leva 30 segundos</span>
       </span>
@@ -874,7 +874,7 @@
     <p class="footer-address">Av. Getúlio Vargas, 255 · Centro<br>Divinópolis, MG · 35500-024</p>
     <div class="footer-bottom">
       <span>© 2026 Elite Barber</span>
-      <span>5,0 ★ no Google</span>
+      <span><span data-google-rating>5,0</span> ★ no Google</span>
     </div>
   </footer>
 
@@ -1214,6 +1214,40 @@
   });
   initTabs();
   initCopy();
+
+  /* ---------- nota e avaliações (data/reviews.json) ---------- */
+  function applyReviewData(data) {
+    const rating = Number(data && data.rating);
+    const count = Number(data && data.count);
+    if (!isFinite(rating) || !isFinite(count)) return;
+
+    const ratingText = rating.toFixed(1).replace(".", ",");
+    $$("[data-google-rating]").forEach(function (el) { el.textContent = ratingText; });
+    $$("[data-google-count]").forEach(function (el) { el.textContent = String(count); });
+
+    const ratingLink = $(".rating");
+    if (ratingLink) {
+      ratingLink.setAttribute("aria-label",
+        "Nota " + ratingText + " de 5, com " + count + " avaliações no Google");
+    }
+
+    const ld = $('script[type="application/ld+json"]');
+    if (ld) {
+      try {
+        const json = JSON.parse(ld.textContent);
+        if (json.aggregateRating) {
+          json.aggregateRating.ratingValue = rating.toFixed(1);
+          json.aggregateRating.reviewCount = String(count);
+          ld.textContent = JSON.stringify(json);
+        }
+      } catch (err) {}
+    }
+  }
+
+  fetch("data/reviews.json?t=" + Date.now(), { cache: "no-store" })
+    .then(function (res) { return res.ok ? res.json() : Promise.reject(); })
+    .then(applyReviewData)
+    .catch(function () { /* mantém os valores do HTML */ });
 })();
 </script>
 </body>
