@@ -93,15 +93,21 @@ negativa do logo (`.logo { margin-top: -42px }`).
 O logo é o arquivo enviado, recortado para ficar mais legível em tamanho
 pequeno. Para usar o arquivo original, substitua `assets/logo.png`.
 
+A imagem de compartilhamento é `assets/share-elite-barber.jpg`, gerada a partir
+da foto do barbeiro em 1200 × 630.
+
 ## Publicar
+
+Site publicado em <https://raphaeldaysc.github.io/elite-barber/>.
 
 - **Netlify Drop**: arraste a pasta inteira em <https://app.netlify.com/drop>.
 - **Vercel**: importe o repositório ou rode `vercel` na pasta.
-- **GitHub Pages**: suba os arquivos e ative o Pages.
+- **GitHub Pages**: o repositório já está com o Pages ativo.
 
-Mantenha a pasta `assets/` junto do `index.html`. Depois de publicar, troque o
-`og:image` do `<head>` pela URL completa da foto, para o preview ficar bonito
-quando o link for compartilhado.
+Mantenha a pasta `assets/` junto do `index.html`. O `og:image` já aponta para
+`assets/share-elite-barber.jpg` na URL pública do Pages, então o preview do
+WhatsApp usa essa imagem. Se mudar de domínio, atualize as URLs absolutas no
+`<head>`.
 
 ## Estrutura
 
@@ -109,6 +115,7 @@ quando o link for compartilhado.
 index.html              página completa (HTML + CSS + JS)
 assets/logo.png         logo da Elite Barber (512 px)
 assets/shop.jpg         foto do topo
+assets/share-elite-barber.jpg  imagem de compartilhamento (WhatsApp/OG)
 assets/fonts/           Bebas Neue e Inter em woff2
 preview/                imagens de referência (não usadas pela página)
 ```
