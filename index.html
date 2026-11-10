@@ -1,0 +1,1212 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Elite Barber | Barbearia em Divinópolis</title>
+<meta name="description" content="Corte, barba e acabamento no Centro de Divinópolis. Agende pelo ClickBarber, veja horários e deixe sua avaliação no Google. 5,0 com 11 avaliações.">
+<meta name="theme-color" content="#0B1020">
+<meta name="color-scheme" content="light">
+<meta name="robots" content="index, follow">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:title" content="Elite Barber | Barbearia em Divinópolis">
+<meta property="og:description" content="Corte, barba e acabamento com hora marcada. Agende pelo ClickBarber e avalie no Google.">
+<meta property="og:image" content="assets/shop.jpg">
+<meta property="og:image:width" content="810">
+<meta property="og:image:height" content="615">
+<link rel="icon" href="assets/logo.png" type="image/png">
+<link rel="apple-touch-icon" href="assets/logo.png">
+<link rel="preload" href="assets/fonts/bebas-neue-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/inter-latin-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/shop.jpg" as="image" fetchpriority="high">
+<style>
+  @font-face{
+    font-family:"Bebas Neue";
+    font-style:normal;
+    font-weight:400;
+    font-display:swap;
+    src:url("assets/fonts/bebas-neue-latin.woff2") format("woff2");
+  }
+  @font-face{
+    font-family:"Inter";
+    font-style:normal;
+    font-weight:400 800;
+    font-display:swap;
+    src:url("assets/fonts/inter-latin-var.woff2") format("woff2");
+  }
+
+  :root{
+    --paper:#F2ECE1;
+    --paper-2:#FAF6EE;
+    --ink:#0B1020;
+    --ink-2:#323A4D;
+    --muted:#636A7B;
+    --blue:#0C30DC;
+    --blue-deep:#0823A8;
+    --red:#CE3B2E;
+    --gold:#BE8A2F;
+    --line:rgba(11,16,32,.18);
+    --line-soft:rgba(11,16,32,.10);
+    --mono:ui-monospace, "SFMono-Regular", "Cascadia Mono", "Segoe UI Mono", Consolas, monospace;
+    --body:"Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    --display:"Bebas Neue", "Arial Narrow", Impact, sans-serif;
+  }
+
+  *,*::before,*::after{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--body);
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    overflow-x:hidden;
+  }
+  ::selection{background:var(--blue);color:var(--paper-2)}
+  img{max-width:100%;display:block}
+  button{font:inherit;color:inherit}
+  a{-webkit-tap-highlight-color:transparent}
+
+  .grain{
+    position:fixed;
+    inset:0;
+    z-index:80;
+    pointer-events:none;
+    opacity:.045;
+    mix-blend-mode:multiply;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.6'/%3E%3C/svg%3E");
+  }
+
+  .skip{
+    position:absolute;
+    top:-60px;
+    left:16px;
+    z-index:120;
+    padding:10px 14px;
+    background:var(--ink);
+    color:var(--paper-2);
+    font-family:var(--mono);
+    font-size:9px;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    text-decoration:none;
+    border-radius:2px;
+  }
+  .skip:focus{top:16px}
+
+  .page{
+    width:100%;
+    max-width:600px;
+    margin-inline:auto;
+    padding:calc(16px + env(safe-area-inset-top)) 20px calc(36px + env(safe-area-inset-bottom));
+  }
+
+  .mono{
+    font-family:var(--mono);
+    font-size:9px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+  }
+
+  /* ---------- capa ---------- */
+  .photo{
+    position:relative;
+    margin:0;
+  }
+  .photo-meta{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    padding:0 2px 10px;
+  }
+  .photo-meta .mono{
+    color:var(--muted);
+    white-space:nowrap;
+  }
+  .photo-frame{
+    position:relative;
+    padding:6px;
+    background:var(--paper-2);
+    border:1px solid var(--line);
+    box-shadow:0 18px 30px -28px rgba(11,16,32,.55);
+  }
+  .photo-frame img{
+    width:100%;
+    height:250px;
+    object-fit:cover;
+    object-position:50% 42%;
+    display:block;
+  }
+  .photo-shade{
+    position:absolute;
+    inset:6px;
+    pointer-events:none;
+    background:linear-gradient(180deg, rgba(5,9,24,.10) 0%, rgba(5,9,24,0) 28%, rgba(5,9,24,.16) 100%);
+  }
+  .status{
+    display:inline-flex;
+    align-items:center;
+    gap:5px;
+    font-family:var(--mono);
+    font-size:8.5px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--ink-2);
+    white-space:nowrap;
+  }
+  .status-dot{
+    width:5px;
+    height:5px;
+    flex:none;
+    border-radius:50%;
+    background:var(--muted);
+    box-shadow:0 0 0 3px rgba(99,106,123,.2);
+  }
+  .status[data-state="open"] .status-dot{
+    background:#42A86F;
+    box-shadow:0 0 0 3px rgba(66,168,111,.22);
+  }
+  .status[data-state="closed"] .status-dot{
+    background:#E05A4A;
+    box-shadow:0 0 0 3px rgba(224,90,74,.2);
+  }
+
+  /* ---------- identidade ---------- */
+  .identity{position:relative;z-index:3}
+  .logo{
+    width:84px;
+    height:84px;
+    margin-top:-42px;
+    border:4px solid var(--paper);
+    background:var(--paper);
+    box-shadow:0 0 0 1px rgba(11,16,32,.22), 4px 4px 0 rgba(11,16,32,.06);
+    transform:rotate(-1.5deg);
+  }
+  .title{
+    margin:18px 0 0;
+    font-family:var(--display);
+    font-weight:400;
+    font-size:clamp(3.2rem, 14vw, 4.2rem);
+    line-height:.85;
+    letter-spacing:.01em;
+    text-transform:uppercase;
+  }
+  .title span{color:var(--blue)}
+  .tagline{
+    max-width:36ch;
+    margin:10px 0 0;
+    font-size:13.5px;
+    line-height:1.55;
+    font-weight:500;
+    color:var(--ink-2);
+    text-wrap:pretty;
+  }
+  .rating{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    width:fit-content;
+    margin-top:14px;
+    font-size:11px;
+    color:var(--muted);
+    text-decoration:none;
+    -webkit-tap-highlight-color:transparent;
+  }
+  .rating .stars{
+    font-size:9.5px;
+    letter-spacing:1.4px;
+    color:var(--gold);
+    transform:translateY(-.5px);
+  }
+  .rating strong{font-size:12px;font-weight:700;color:var(--ink)}
+  .rating-sep{color:var(--muted);margin:0 -1px}
+  .rating .arrow{font-size:10px;color:var(--blue)}
+  .rating:focus-visible{outline:2px solid var(--blue);outline-offset:3px}
+  .rating:hover span:not(.stars):not(.arrow){text-decoration:underline;text-underline-offset:3px}
+
+  /* ---------- tickets ---------- */
+  .actions{display:grid;gap:10px;margin-top:24px}
+  .ticket{
+    position:relative;
+    display:grid;
+    grid-template-columns:minmax(0,1fr) 54px;
+    min-height:88px;
+    border-radius:3px;
+    text-decoration:none;
+    color:inherit;
+    transition:transform .18s ease, box-shadow .18s ease;
+    -webkit-tap-highlight-color:transparent;
+  }
+  .ticket:active{transform:scale(.994)}
+  .ticket:focus-visible{outline:2px solid var(--blue);outline-offset:3px}
+  .ticket-main{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    gap:2px;
+    padding:13px 16px;
+    min-width:0;
+  }
+  .ticket-kicker{
+    font-family:var(--mono);
+    font-size:8.5px;
+    letter-spacing:.13em;
+    text-transform:uppercase;
+  }
+  .ticket-title{
+    font-family:var(--display);
+    font-size:27px;
+    line-height:1;
+    letter-spacing:.015em;
+    text-transform:uppercase;
+  }
+  .ticket-sub{
+    font-family:var(--mono);
+    font-size:8.5px;
+    letter-spacing:.05em;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+  }
+  .ticket-stub{
+    position:relative;
+    display:grid;
+    place-items:center;
+    border-left:1px dashed;
+  }
+  .ticket-stub::before,
+  .ticket-stub::after{
+    content:"";
+    position:absolute;
+    left:-7px;
+    width:14px;
+    height:14px;
+    border-radius:50%;
+    background:var(--paper);
+  }
+  .ticket-stub::before{top:-7px}
+  .ticket-stub::after{bottom:-7px}
+  .ticket-arrow{
+    font-size:18px;
+    line-height:1;
+    transition:transform .2s ease;
+  }
+
+  .ticket--booking{
+    background:var(--blue);
+    color:var(--paper-2);
+    box-shadow:0 16px 28px -24px rgba(12,48,220,.95);
+  }
+  .ticket--booking .ticket-kicker{color:rgba(250,246,238,.62)}
+  .ticket--booking .ticket-sub{color:rgba(250,246,238,.62)}
+  .ticket--booking .ticket-stub{border-left-color:rgba(250,246,238,.32)}
+
+  .ticket--review{
+    background:var(--paper-2);
+    border:1px dashed rgba(11,16,32,.34);
+    color:var(--ink);
+  }
+  .ticket--review .ticket-kicker{color:var(--gold)}
+  .ticket--review .ticket-sub{color:var(--muted)}
+  .ticket--review .ticket-stub{border-left-color:rgba(11,16,32,.22)}
+
+  @media (hover:hover) and (pointer:fine){
+    .ticket:hover{transform:translateY(-1px)}
+    .ticket:hover .ticket-arrow{transform:translateX(3px)}
+    .ticket--booking:hover{box-shadow:0 20px 32px -22px rgba(12,48,220,1)}
+    .ticket--review:hover{background:#FDFAF4;border-color:rgba(11,16,32,.5)}
+  }
+
+  /* ---------- depoimento ---------- */
+  .quote{
+    margin:26px 0 0;
+    padding:2px 0 2px 14px;
+    border-left:2px solid var(--blue);
+  }
+  .quote blockquote{
+    margin:0;
+    font-family:Georgia, "Times New Roman", serif;
+    font-style:italic;
+    font-size:15.5px;
+    line-height:1.45;
+    color:var(--ink-2);
+  }
+  .quote figcaption{
+    display:flex;
+    align-items:center;
+    gap:6px;
+    margin-top:7px;
+    font-family:var(--mono);
+    font-size:8px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--muted);
+  }
+  .quote .stars{color:var(--gold);font-size:8px;letter-spacing:1px}
+
+  /* ---------- abas ---------- */
+  .info{margin-top:30px}
+  .tabs{
+    position:relative;
+    display:grid;
+    grid-template-columns:repeat(3, minmax(0,1fr));
+    border-bottom:1px solid var(--line);
+  }
+  .tab{
+    display:flex;
+    align-items:flex-end;
+    justify-content:center;
+    gap:5px;
+    min-height:44px;
+    padding:0 0 11px;
+    border:0;
+    background:none;
+    text-align:left;
+    font-family:var(--mono);
+    font-size:9px;
+    letter-spacing:.09em;
+    text-transform:uppercase;
+    color:var(--muted);
+    cursor:pointer;
+    -webkit-tap-highlight-color:transparent;
+    transition:color .2s ease;
+  }
+  .tab-index{font-size:8px;letter-spacing:.06em;color:var(--muted)}
+  .tab.is-active{color:var(--ink)}
+  .tab.is-active .tab-index{color:var(--blue)}
+  .tab:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+  .tab-indicator{
+    position:absolute;
+    bottom:-1px;
+    left:0;
+    z-index:2;
+    width:0;
+    height:2px;
+    background:var(--blue);
+    opacity:0;
+    transition:transform .3s cubic-bezier(.22,1,.36,1), width .3s cubic-bezier(.22,1,.36,1), opacity .2s;
+  }
+  .tabs.is-ready .tab-indicator{opacity:1}
+
+  .panels{
+    position:relative;
+    overflow:hidden;
+    transition:height .32s cubic-bezier(.22,1,.36,1);
+  }
+  .panel{padding:18px 0 2px;outline:none}
+  .panel[hidden]{display:none}
+  .panel.anim{animation:panelIn .3s cubic-bezier(.22,1,.36,1)}
+  .panel:focus-visible{outline:2px solid var(--blue);outline-offset:4px}
+
+  .panel-kicker{
+    margin:0 0 8px;
+    font-family:var(--mono);
+    font-size:8px;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:var(--muted);
+  }
+  .panel-note{
+    margin:11px 0 0;
+    font-family:var(--mono);
+    font-size:8px;
+    line-height:1.6;
+    letter-spacing:.05em;
+    text-transform:uppercase;
+    color:var(--muted);
+  }
+
+  /* serviços */
+  .service-list{list-style:none;margin:0;padding:0}
+  .service{
+    display:flex;
+    align-items:baseline;
+    gap:8px;
+    padding:8px 0;
+    border-bottom:1px solid var(--line-soft);
+  }
+  .service:last-child{border-bottom:0}
+  .service-name{
+    font-size:13.5px;
+    font-weight:600;
+    letter-spacing:-.01em;
+    white-space:nowrap;
+  }
+  .service-meta{
+    margin-left:5px;
+    font-family:var(--mono);
+    font-size:7.5px;
+    font-weight:400;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    color:var(--muted);
+  }
+  .tag{
+    margin-left:6px;
+    padding:1px 4px;
+    border:1px solid rgba(206,59,46,.4);
+    border-radius:1px;
+    font-family:var(--mono);
+    font-size:6.5px;
+    font-style:normal;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--red);
+  }
+  .service-dots{
+    flex:1;
+    min-width:10px;
+    border-bottom:1px dotted rgba(11,16,32,.32);
+    transform:translateY(-3px);
+  }
+  .service-price{
+    font-family:var(--mono);
+    font-size:11.5px;
+    font-weight:600;
+    white-space:nowrap;
+    font-variant-numeric:tabular-nums;
+  }
+
+  /* horários */
+  .hours-list{list-style:none;margin:0;padding:0}
+  .hours-row{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:12px;
+    padding:10px 0;
+    border-bottom:1px solid var(--line-soft);
+  }
+  .hours-row:last-child{border-bottom:0}
+  .hours-day{
+    display:flex;
+    align-items:center;
+    gap:7px;
+    font-size:13px;
+    font-weight:600;
+  }
+  .today{
+    padding:1px 4px;
+    border:1px solid rgba(12,48,220,.35);
+    border-radius:1px;
+    font-family:var(--mono);
+    font-size:6.5px;
+    font-style:normal;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:var(--blue);
+  }
+  .hours-time{
+    font-family:var(--mono);
+    font-size:10.5px;
+    font-variant-numeric:tabular-nums;
+    white-space:nowrap;
+  }
+  .hours-time.is-closed{color:var(--muted)}
+  .hours-row.is-today .hours-time{color:var(--blue);font-weight:600}
+
+  /* endereço */
+  .address{
+    margin:0;
+    font-size:16px;
+    font-weight:600;
+    line-height:1.4;
+    letter-spacing:-.01em;
+  }
+  .address span{
+    display:block;
+    margin-top:2px;
+    font-size:12.5px;
+    font-weight:500;
+    color:var(--muted);
+  }
+  .address small{
+    display:block;
+    margin-top:6px;
+    font-family:var(--mono);
+    font-size:7.5px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    color:var(--muted);
+  }
+  .loc-actions{
+    display:grid;
+    grid-template-columns:minmax(0,1fr) auto;
+    gap:8px;
+    margin-top:14px;
+  }
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:6px;
+    min-height:44px;
+    padding:0 14px;
+    border:1px solid transparent;
+    border-radius:2px;
+    font-family:var(--mono);
+    font-size:8.5px;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    text-decoration:none;
+    cursor:pointer;
+    transition:background .18s ease, border-color .18s ease;
+    -webkit-tap-highlight-color:transparent;
+  }
+  .btn--solid{background:var(--ink);border-color:var(--ink);color:var(--paper-2)}
+  .btn--ghost{background:transparent;border-color:var(--line);color:var(--ink)}
+  .btn:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+  @media (hover:hover) and (pointer:fine){
+    .btn--solid:hover{background:#1A2340}
+    .btn--ghost:hover{border-color:var(--ink)}
+  }
+  .loc-whats{
+    margin:14px 0 0;
+    font-family:var(--mono);
+    font-size:8.5px;
+    letter-spacing:.05em;
+    color:var(--muted);
+  }
+  .loc-whats a{
+    color:var(--blue);
+    text-decoration:none;
+    border-bottom:1px solid rgba(12,48,220,.3);
+  }
+
+  /* ---------- rodapé ---------- */
+  .footer{margin-top:30px}
+  .social-line{
+    display:flex;
+    flex-wrap:wrap;
+    gap:18px;
+    padding:12px 0;
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+  }
+  .social-line a{
+    display:inline-flex;
+    align-items:center;
+    gap:4px;
+    min-height:32px;
+    font-family:var(--mono);
+    font-size:9px;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:var(--ink-2);
+    text-decoration:none;
+  }
+  .social-line a:hover{color:var(--blue)}
+  .footer-address{
+    margin:16px 0 0;
+    font-family:var(--mono);
+    font-size:8px;
+    line-height:1.7;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    color:var(--muted);
+  }
+  .footer-bottom{
+    display:flex;
+    justify-content:space-between;
+    gap:12px;
+    margin-top:14px;
+    font-family:var(--mono);
+    font-size:8px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--muted);
+  }
+
+  /* ---------- toast ---------- */
+  .toast{
+    position:fixed;
+    left:50%;
+    bottom:calc(24px + env(safe-area-inset-bottom));
+    z-index:100;
+    transform:translate(-50%, 10px);
+    padding:10px 14px;
+    border-radius:2px;
+    background:var(--ink);
+    color:var(--paper-2);
+    font-family:var(--mono);
+    font-size:8.5px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    opacity:0;
+    pointer-events:none;
+    transition:opacity .22s ease, transform .22s ease;
+    box-shadow:0 18px 30px -20px rgba(11,16,32,.9);
+  }
+  .toast.is-visible{opacity:1;transform:translate(-50%, 0)}
+
+  @keyframes panelIn{
+    from{opacity:0;transform:translateY(5px)}
+    to{opacity:1;transform:none}
+  }
+
+  @media (max-width:359px){
+    .logo{width:78px;height:78px;margin-top:-39px}
+    .title{font-size:3rem}
+    .tagline{font-size:13px}
+    .ticket{grid-template-columns:minmax(0,1fr) 48px;min-height:84px}
+    .ticket-title{font-size:25px}
+    .ticket-main{padding:12px 14px}
+    .service-name{font-size:13px}
+    .service-price{font-size:11px}
+    .tab{font-size:8px}
+    .photo-frame img{height:220px}
+    .photo-meta .mono{font-size:8px}
+    .status{font-size:8px}
+  }
+
+  @media (min-width:900px){
+    .page{max-width:600px;padding-top:36px;padding-bottom:44px}
+    .photo-frame{padding:8px}
+    .photo-frame img{height:330px}
+    .photo-shade{inset:8px}
+    .photo-meta{padding-bottom:12px}
+    .status{font-size:9px}
+    .logo{width:104px;height:104px;margin-top:-52px}
+    .title{font-size:4.4rem}
+    .tagline{font-size:14.5px}
+    .actions{grid-template-columns:1fr 1fr;gap:12px;margin-top:28px}
+    .ticket{min-height:96px}
+    .ticket-title{font-size:26px}
+    .info{margin-top:36px}
+    .tab{font-size:9px}
+    .service-name{font-size:14px}
+    .service-price{font-size:12px}
+    .quote{margin-top:30px}
+    .quote blockquote{font-size:17px}
+    .footer{margin-top:36px}
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    *,*::before,*::after{
+      animation-duration:.001ms !important;
+      animation-iteration-count:1 !important;
+      transition-duration:.001ms !important;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="grain" aria-hidden="true"></div>
+<a class="skip" href="#acoes">Ir para os links</a>
+
+<main class="page">
+
+  <header class="hero">
+    <figure class="photo">
+      <figcaption class="photo-meta">
+        <span class="mono">Divinópolis · MG</span>
+        <span class="status" id="status" data-state="loading" role="status" aria-live="polite">
+          <span class="status-dot" aria-hidden="true"></span>
+          <span id="statusText">Verificando…</span>
+        </span>
+      </figcaption>
+
+      <div class="photo-frame">
+        <img src="assets/shop.jpg" alt="Corte de cabelo feito na Elite Barber, em Divinópolis" width="810" height="615" fetchpriority="high" decoding="async">
+        <div class="photo-shade" aria-hidden="true"></div>
+      </div>
+    </figure>
+
+    <div class="identity">
+      <img class="logo" src="assets/logo.png" alt="Logo da Elite Barber" width="512" height="512">
+      <h1 class="title">Elite <span>Barber</span></h1>
+      <p class="tagline">Corte, barba e acabamento no Centro de Divinópolis. Hora marcada, sem espera.</p>
+      <a class="rating" href="https://www.google.com/search?q=Elite+barber+Divin%C3%B3polis+MG" data-link="review" target="_blank" rel="noopener"
+         aria-label="Nota 5,0 de 5, com 11 avaliações no Google">
+        <span class="stars" aria-hidden="true">★★★★★</span>
+        <strong>5,0</strong>
+        <span class="rating-sep" aria-hidden="true">·</span>
+        <span>11 avaliações no Google</span>
+        <span class="arrow" aria-hidden="true">↗</span>
+      </a>
+    </div>
+  </header>
+
+  <section class="actions" id="acoes" aria-label="Ações principais">
+
+    <a class="ticket ticket--booking" href="https://clickbarber.com.br/EliteBarber" data-link="booking" target="_blank" rel="noopener">
+      <span class="ticket-main">
+        <span class="ticket-kicker">01 · Agendamento online</span>
+        <span class="ticket-title">Agendar horário</span>
+        <span class="ticket-sub">clickbarber.com.br/EliteBarber</span>
+      </span>
+      <span class="ticket-stub" aria-hidden="true">
+        <span class="ticket-arrow">→</span>
+      </span>
+    </a>
+
+    <a class="ticket ticket--review" href="https://www.google.com/search?q=Elite+barber+Divin%C3%B3polis+MG" data-link="review" target="_blank" rel="noopener">
+      <span class="ticket-main">
+        <span class="ticket-kicker">02 · Google · 11 avaliações</span>
+        <span class="ticket-title">Avaliar no Google</span>
+        <span class="ticket-sub">Leva 30 segundos</span>
+      </span>
+      <span class="ticket-stub" aria-hidden="true">
+        <span class="ticket-arrow">→</span>
+      </span>
+    </a>
+
+  </section>
+
+  <figure class="quote">
+    <blockquote>“Fui a primeira vez, e voltarei mais vezes.”</blockquote>
+    <figcaption>
+      <span class="stars" aria-hidden="true">★★★★★</span>
+      Mateus S. · avaliação no Google
+    </figcaption>
+  </figure>
+
+  <section class="info" aria-label="Informações da Elite Barber">
+
+    <div class="tabs" role="tablist" aria-label="Informações">
+      <span class="tab-indicator" aria-hidden="true"></span>
+      <button class="tab is-active" id="tab-servicos" role="tab" aria-selected="true"
+              aria-controls="panel-servicos" tabindex="0" type="button">
+        <span class="tab-index" aria-hidden="true">01</span> Serviços
+      </button>
+      <button class="tab" id="tab-horarios" role="tab" aria-selected="false"
+              aria-controls="panel-horarios" tabindex="-1" type="button">
+        <span class="tab-index" aria-hidden="true">02</span> Horários
+      </button>
+      <button class="tab" id="tab-local" role="tab" aria-selected="false"
+              aria-controls="panel-local" tabindex="-1" type="button">
+        <span class="tab-index" aria-hidden="true">03</span> Onde fica
+      </button>
+    </div>
+
+    <div class="panels">
+
+      <div class="panel" id="panel-servicos" role="tabpanel" aria-labelledby="tab-servicos" tabindex="0">
+        <p class="panel-kicker">Profissionais: Willian e Ricardo Oliveira</p>
+        <ul class="service-list">
+          <li class="service">
+            <span class="service-name">Corte <span class="service-meta">30 min</span></span>
+            <span class="service-dots" aria-hidden="true"></span>
+            <span class="service-price">R$ 35</span>
+          </li>
+          <li class="service">
+            <span class="service-name">Barba <span class="service-meta">30 min</span></span>
+            <span class="service-dots" aria-hidden="true"></span>
+            <span class="service-price">R$ 35</span>
+          </li>
+          <li class="service">
+            <span class="service-name">Sobrancelha <span class="service-meta">10 min</span></span>
+            <span class="service-dots" aria-hidden="true"></span>
+            <span class="service-price">R$ 10</span>
+          </li>
+          <li class="service">
+            <span class="service-name">Pezinho <span class="service-meta">15 min</span></span>
+            <span class="service-dots" aria-hidden="true"></span>
+            <span class="service-price">R$ 15</span>
+          </li>
+          <li class="service">
+            <span class="service-name">Limpeza de pele <em class="tag">novo</em> <span class="service-meta">30 min</span></span>
+            <span class="service-dots" aria-hidden="true"></span>
+            <span class="service-price">R$ 20</span>
+          </li>
+          <li class="service">
+            <span class="service-name">Pigmentação barba <span class="service-meta">30 min</span></span>
+            <span class="service-dots" aria-hidden="true"></span>
+            <span class="service-price">R$ 35</span>
+          </li>
+          <li class="service">
+            <span class="service-name">Pigmentação cabelo <span class="service-meta">30 min</span></span>
+            <span class="service-dots" aria-hidden="true"></span>
+            <span class="service-price">R$ 40</span>
+          </li>
+          <li class="service">
+            <span class="service-name">Alisamento <span class="service-meta">30 min</span></span>
+            <span class="service-dots" aria-hidden="true"></span>
+            <span class="service-price">R$ 40</span>
+          </li>
+        </ul>
+        <p class="panel-note">Valores do agendamento. Podem variar conforme o profissional.</p>
+      </div>
+
+      <div class="panel" id="panel-horarios" role="tabpanel" aria-labelledby="tab-horarios" tabindex="0" hidden>
+        <ul class="hours-list" id="hoursList"></ul>
+        <p class="panel-note">Horários do Google. Feriados podem ter horário especial.</p>
+      </div>
+
+      <div class="panel" id="panel-local" role="tabpanel" aria-labelledby="tab-local" tabindex="0" hidden>
+        <p class="address" id="addressText">
+          Av. Getúlio Vargas, 255
+          <span>Centro · Divinópolis, MG</span>
+          <small>CEP 35500-024</small>
+        </p>
+        <div class="loc-actions">
+          <a class="btn btn--solid" href="https://www.google.com/maps/search/?api=1&amp;query=Av.%20Get%C3%BAlio%20Vargas%2C%20255%20-%20Centro%2C%20Divin%C3%B3polis%20-%20MG%2C%2035500-024"
+             data-link="maps" target="_blank" rel="noopener">Abrir no Maps ↗</a>
+          <button class="btn btn--ghost" type="button" id="copyAddress">Copiar</button>
+        </div>
+        <p class="loc-whats">WhatsApp <a href="tel:+5537991109906">(37) 99110-9906</a></p>
+      </div>
+
+    </div>
+  </section>
+
+  <footer class="footer">
+    <nav class="social-line" aria-label="Contato">
+      <a href="https://wa.me/5537991109906" data-link="whatsapp" target="_blank" rel="noopener">WhatsApp ↗</a>
+      <a href="https://www.google.com/maps/search/?api=1&amp;query=Av.%20Get%C3%BAlio%20Vargas%2C%20255%20-%20Centro%2C%20Divin%C3%B3polis%20-%20MG%2C%2035500-024"
+         data-link="maps" target="_blank" rel="noopener">Google Maps ↗</a>
+      <a href="tel:+5537991109906">Ligar ↗</a>
+    </nav>
+    <p class="footer-address">Av. Getúlio Vargas, 255 · Centro<br>Divinópolis, MG · 35500-024</p>
+    <div class="footer-bottom">
+      <span>© 2026 Elite Barber</span>
+      <span>5,0 ★ no Google</span>
+    </div>
+  </footer>
+
+</main>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HairSalon",
+  "name": "Elite Barber",
+  "image": "assets/logo.png",
+  "url": "https://clickbarber.com.br/EliteBarber",
+  "telephone": "+55 37 99110-9906",
+  "priceRange": "R$ 10–40",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Av. Getúlio Vargas, 255",
+    "addressLocality": "Divinópolis",
+    "addressRegion": "MG",
+    "postalCode": "35500-024",
+    "addressCountry": "BR"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "5.0",
+    "reviewCount": "11"
+  },
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      "opens": "09:00",
+      "closes": "19:30"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": "Saturday",
+      "opens": "09:00",
+      "closes": "16:00"
+    }
+  ]
+}
+</script>
+
+<script>
+(function () {
+  "use strict";
+
+  /* ============================================================
+     EDITE AQUI: links da página
+     ============================================================ */
+  const LINKS = {
+    booking: "https://clickbarber.com.br/EliteBarber",
+    review: "https://www.google.com/search?sca_esv=f6888a27e4d63945&biw=1528&bih=828&sxsrf=AKL5yDgjNUPblGkX2oUBNCTc_g11tDqiCA:1794332839163&kgmid=/g/11y_d7247h&q=Elite+barber&shem=dlvs1,epsd1,esd2e,ltae,rimspwouoe,sdpie&shndl=30&source=sh/x/loc/uni/m1/1&kgs=7a2beb5fe6d3299a&utm_source=dlvs1,epsd1,esd2e,ltae,rimspwouoe,sdpie,sh/x/loc/uni/m1/1#lrd=0xa0a512babb1c37:0xb6493cef2a99c33e,3,,,,",
+    whatsapp: "https://wa.me/5537991109906?text=" +
+              encodeURIComponent("Olá! Quero agendar um horário na Elite Barber."),
+    maps: "https://www.google.com/maps/search/?api=1&query=" +
+          encodeURIComponent("Av. Getúlio Vargas, 255 - Centro, Divinópolis - MG, 35500-024")
+  };
+
+  /* ============================================================
+     EDITE AQUI: horários (0 = domingo … 6 = sábado)
+     ============================================================ */
+  const TIMEZONE = "America/Sao_Paulo";
+
+  const HOURS = [
+    { day: "Domingo",       short: "dom", ranges: [] },
+    { day: "Segunda-feira", short: "seg", ranges: [["09:00", "19:30"]] },
+    { day: "Terça-feira",   short: "ter", ranges: [["09:00", "19:30"]] },
+    { day: "Quarta-feira",  short: "qua", ranges: [["09:00", "19:30"]] },
+    { day: "Quinta-feira",  short: "qui", ranges: [["09:00", "19:30"]] },
+    { day: "Sexta-feira",   short: "sex", ranges: [["09:00", "19:30"]] },
+    { day: "Sábado",        short: "sáb", ranges: [["09:00", "16:00"]] }
+  ];
+
+  const GROUPS = [
+    { label: "Segunda a sexta", days: [1, 2, 3, 4, 5] },
+    { label: "Sábado",          days: [6] },
+    { label: "Domingo",         days: [0] }
+  ];
+
+  const $  = (sel, ctx) => (ctx || document).querySelector(sel);
+  const $$ = (sel, ctx) => Array.prototype.slice.call((ctx || document).querySelectorAll(sel));
+
+  /* ---------- links ---------- */
+  $$("[data-link]").forEach(function (el) {
+    const url = LINKS[el.getAttribute("data-link")];
+    if (url) el.setAttribute("href", url);
+  });
+
+  /* ---------- horário / status ---------- */
+  function toMinutes(hhmm) {
+    const parts = hhmm.split(":");
+    return parseInt(parts[0], 10) * 60 + parseInt(parts[1], 10);
+  }
+
+  function pretty(hhmm) {
+    const parts = hhmm.split(":");
+    const h = parseInt(parts[0], 10);
+    const m = parseInt(parts[1], 10);
+    return m ? h + "h" + (m < 10 ? "0" + m : m) : h + "h";
+  }
+
+  function getNow() {
+    const fmt = new Intl.DateTimeFormat("en-US", {
+      timeZone: TIMEZONE,
+      weekday: "short",
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: false
+    });
+    const parts = {};
+    fmt.formatToParts(new Date()).forEach(function (p) { parts[p.type] = p.value; });
+    const map = { Sun: 0, Mon: 1, Tue: 2, Wed: 3, Thu: 4, Fri: 5, Sat: 6 };
+    let hour = parseInt(parts.hour, 10);
+    if (hour === 24) hour = 0;
+    return {
+      dow: map[parts.weekday],
+      minutes: hour * 60 + parseInt(parts.minute, 10)
+    };
+  }
+
+  function nextOpening(now) {
+    const later = HOURS[now.dow].ranges.filter(function (r) {
+      return toMinutes(r[0]) > now.minutes;
+    })[0];
+    if (later) return "Fechado · abre " + pretty(later[0]);
+
+    for (let i = 1; i <= 7; i++) {
+      const d = (now.dow + i) % 7;
+      const first = HOURS[d].ranges[0];
+      if (!first) continue;
+      if (i === 1) return "Fechado · abre amanhã " + pretty(first[0]);
+      return "Fechado · abre " + HOURS[d].short + " " + pretty(first[0]);
+    }
+    return "Fechado";
+  }
+
+  function renderStatus() {
+    const now = getNow();
+    const today = HOURS[now.dow];
+    const el = $("#status");
+    const text = $("#statusText");
+    if (!el || !text) return;
+
+    const current = today.ranges.filter(function (r) {
+      return now.minutes >= toMinutes(r[0]) && now.minutes < toMinutes(r[1]);
+    })[0];
+
+    const state = current ? "open" : "closed";
+    const message = current
+      ? "Aberto até " + pretty(current[1])
+      : nextOpening(now);
+
+    if (el.getAttribute("data-state") !== state) el.setAttribute("data-state", state);
+    if (text.textContent !== message) text.textContent = message;
+  }
+
+  let renderedDay = -1;
+
+  function renderHours() {
+    const list = $("#hoursList");
+    if (!list) return;
+    const now = getNow();
+    if (now.dow === renderedDay && list.children.length) return;
+    renderedDay = now.dow;
+
+    list.innerHTML = GROUPS.map(function (group) {
+      const first = HOURS[group.days[0]].ranges[0];
+      const isToday = group.days.indexOf(now.dow) > -1;
+      const time = first ? first[0] + " às " + first[1] : "Fechado";
+      return '<li class="hours-row' + (isToday ? " is-today" : "") + '">' +
+        '<span class="hours-day">' + group.label +
+          (isToday ? '<em class="today">hoje</em>' : "") +
+        '</span>' +
+        '<span class="hours-time' + (first ? "" : " is-closed") + '">' + time + '</span>' +
+      '</li>';
+    }).join("");
+  }
+
+  /* ---------- abas ---------- */
+  function initTabs() {
+    const tablist = $(".tabs");
+    if (!tablist) return;
+    const tabs = $$('[role="tab"]', tablist);
+    const indicator = $(".tab-indicator", tablist);
+    const panels = $(".panels");
+    let active = $(".tab.is-active", tablist) || tabs[0];
+
+    function place(tab) {
+      if (!indicator || !tab) return;
+      indicator.style.width = tab.offsetWidth + "px";
+      indicator.style.transform = "translateX(" + tab.offsetLeft + "px)";
+    }
+
+    function syncHeight(animate) {
+      if (!panels) return;
+      const panel = $(".panel:not([hidden])");
+      if (!panel) return;
+      const h = panel.offsetHeight;
+      if (!animate) {
+        panels.style.transition = "none";
+        panels.style.height = h + "px";
+        void panels.offsetHeight;
+        panels.style.transition = "";
+      } else {
+        panels.style.height = h + "px";
+      }
+    }
+
+    function select(tab, focus) {
+      tabs.forEach(function (t) {
+        const on = t === tab;
+        t.classList.toggle("is-active", on);
+        t.setAttribute("aria-selected", on ? "true" : "false");
+        t.tabIndex = on ? 0 : -1;
+
+        const panel = document.getElementById(t.getAttribute("aria-controls"));
+        if (!panel) return;
+        panel.hidden = !on;
+        panel.classList.toggle("is-active", on);
+        if (on) {
+          panel.classList.remove("anim");
+          void panel.offsetWidth;
+          panel.classList.add("anim");
+        }
+      });
+      active = tab;
+      place(tab);
+      syncHeight(true);
+      if (focus) tab.focus({ preventScroll: true });
+    }
+
+    tabs.forEach(function (tab) {
+      tab.addEventListener("click", function () { select(tab, false); });
+    });
+
+    tablist.addEventListener("keydown", function (e) {
+      const i = tabs.indexOf(document.activeElement);
+      if (i < 0) return;
+      let next = null;
+      if (e.key === "ArrowRight") next = (i + 1) % tabs.length;
+      else if (e.key === "ArrowLeft") next = (i - 1 + tabs.length) % tabs.length;
+      else if (e.key === "Home") next = 0;
+      else if (e.key === "End") next = tabs.length - 1;
+      if (next !== null) {
+        e.preventDefault();
+        select(tabs[next], true);
+      }
+    });
+
+    function refresh() {
+      place(active);
+      syncHeight(false);
+    }
+    window.addEventListener("resize", refresh, { passive: true });
+    if (window.ResizeObserver) new ResizeObserver(refresh).observe(tablist);
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(function () {
+        refresh();
+        tablist.classList.add("is-ready");
+      });
+    } else {
+      tablist.classList.add("is-ready");
+    }
+    requestAnimationFrame(function () {
+      refresh();
+      tablist.classList.add("is-ready");
+    });
+  }
+
+  /* ---------- copiar endereço ---------- */
+  function copyText(text) {
+    if (navigator.clipboard && window.isSecureContext) {
+      return navigator.clipboard.writeText(text).then(function () { return true; }, function () { return legacyCopy(text); });
+    }
+    return Promise.resolve(legacyCopy(text));
+  }
+
+  function legacyCopy(text) {
+    try {
+      const ta = document.createElement("textarea");
+      ta.value = text;
+      ta.setAttribute("readonly", "");
+      ta.style.position = "fixed";
+      ta.style.top = "-1000px";
+      ta.style.opacity = "0";
+      document.body.appendChild(ta);
+      ta.select();
+      const ok = document.execCommand("copy");
+      ta.remove();
+      return ok;
+    } catch (err) {
+      return false;
+    }
+  }
+
+  let toastTimer;
+  function toast(message) {
+    const el = $("#toast");
+    if (!el) return;
+    el.textContent = message;
+    el.classList.add("is-visible");
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () { el.classList.remove("is-visible"); }, 2400);
+  }
+
+  function initCopy() {
+    const btn = $("#copyAddress");
+    const address = $("#addressText");
+    if (!btn || !address) return;
+    btn.addEventListener("click", function () {
+      const text = (address.innerText || address.textContent || "")
+        .replace(/\s*\n\s*/g, ", ")
+        .replace(/\s+/g, " ")
+        .replace(/,\s*$/, "")
+        .trim();
+      copyText(text).then(function (ok) {
+        toast(ok ? "Endereço copiado" : "Não foi possível copiar");
+      });
+    });
+  }
+
+  renderHours();
+  renderStatus();
+  setInterval(function () {
+    renderHours();
+    renderStatus();
+  }, 60000);
+  document.addEventListener("visibilitychange", function () {
+    if (!document.hidden) {
+      renderHours();
+      renderStatus();
+    }
+  });
+  initTabs();
+  initCopy();
+})();
+</script>
+</body>
+</html>
+
