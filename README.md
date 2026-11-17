@@ -9,7 +9,7 @@ Elite Barber, em Divinópolis.
 - Foto real da barbearia no topo, com o logo aplicado como um selo.
 - Dois botões em formato de ticket: **Agendar horário** (ClickBarber) e
   **Avaliar no Google**.
-- Nota **5,0 · 11 avaliações** no Google, com link direto para avaliar.
+- Nota **5,0 · 20 avaliações** no Google, com link direto para avaliar.
 - Status **aberto/fechado** calculado em tempo real, no fuso de São Paulo.
 - Depoimento real de cliente.
 - Abas **Serviços** (com preços), **Horários** e **Onde fica**.
@@ -88,7 +88,7 @@ const HOURS = [
 A nota e a contagem ficam em `data/reviews.json`:
 
 ```json
-{ "rating": 5.0, "count": 11, "updatedAt": "2026-11-10" }
+{ "rating": 5.0, "count": 20, "updatedAt": "2026-11-17" }
 ```
 
 A página lê esse arquivo ao carregar e atualiza a nota do topo, a contagem, o
